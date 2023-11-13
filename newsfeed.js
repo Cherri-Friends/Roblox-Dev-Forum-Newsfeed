@@ -28,7 +28,8 @@ function removeTags(str) {
 } 
 
 async function getNewPosts() {
-    for (const url in urls) {
+    for (const i in urls) {
+        const url = urls[i];
         await fetch(url)
         .then(res => res.json())
         .then(async (data) => {
@@ -39,8 +40,9 @@ async function getNewPosts() {
                 lastPostIds[url] = topics[1].id;
             } else {
                 let newestId = 0
-                for (const topic in topics) {
-                    if (topic.id >= lastPostIds[url]) {
+                for (const i in topics) {
+                    const topic = topics[i];
+                    if (topic.id > lastPostIds[url]) {
 
                         let topicUrl = `https://devforum.roblox.com/t/${topic.slug}/${topic.id}`;
 
@@ -61,7 +63,7 @@ async function getNewPosts() {
 
                             let newMessage = {
                                 "username": "Developer Forum Newsfeed",
-                                "avatar_url": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/3X/9/4/947164a4774c8d55ef04dac214aefba7a1e41fc0.png",
+                                "avatar_url": "",
                                 "content": "",
                                 "embeds": [
                                     {
@@ -97,7 +99,7 @@ async function getNewPosts() {
             }
         });
     };
-    setTimeout(getNewPosts, 10000);
+    setTimeout(getNewPosts, 100000);
 }
 
 getNewPosts();
