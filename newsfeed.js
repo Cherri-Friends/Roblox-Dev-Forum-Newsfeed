@@ -28,8 +28,8 @@ function removeTags(str) {
 } 
 
 async function getNewPosts() {
-    for (const i in urls) {
-        const url = urls[i];
+    for (const urlIndex in urls) {
+        const url = urls[urlIndex];
         await fetch(url)
         .then(res => res.json())
         .then(async (data) => {
@@ -40,8 +40,8 @@ async function getNewPosts() {
                 lastPostIds[url] = topics[1].id;
             } else {
                 let newestId = 0
-                for (const i in topics) {
-                    const topic = topics[i];
+                for (const topicIndex in topics) {
+                    const topic = topics[topicIndex];
                     if (topic.id > lastPostIds[url]) {
 
                         let topicUrl = `https://devforum.roblox.com/t/${topic.slug}/${topic.id}`;
