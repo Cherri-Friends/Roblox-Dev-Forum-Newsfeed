@@ -3,18 +3,18 @@ const config = require("./config.json");
 
 const webhookUrl = config.webhookUrl;
 
-const urls = [
+const trackedCategoryUrls  = [
     "https://devforum.roblox.com/c/updates/release-notes/62.json",
     "https://devforum.roblox.com/c/updates/announcements/36.json",
     "https://devforum.roblox.com/c/updates/news-alerts/193.json",
-    "https://devforum.roblox.com/c/updates/community/90.json"
+    "https://devforum.roblox.com/c/updates/community/90.json",
 ]
 
 const categoryColors = {
     "https://devforum.roblox.com/c/updates/release-notes/62.json": 178007,
     "https://devforum.roblox.com/c/updates/announcements/36.json": 14820122,
     "https://devforum.roblox.com/c/updates/news-alerts/193.json": 16766464,
-    "https://devforum.roblox.com/c/updates/community/90.json": 8201933
+    "https://devforum.roblox.com/c/updates/community/90.json": 8201933,
 }
 
 const lastPostIds = {}
@@ -28,7 +28,7 @@ function removeTags(str) {
 } 
 
 async function getNewPosts() {
-    for (const urlIndex in urls) {
+    for (const urlIndex in trackedCategoryUrls) {
         const url = urls[urlIndex];
         await fetch(url)
         .then(res => res.json())
