@@ -29,7 +29,7 @@ function removeTags(str) {
 
 async function getNewPosts() {
     for (const urlIndex in trackedCategoryUrls) {
-        const url = urls[urlIndex];
+        const url = trackedCategoryUrls[urlIndex];
         await fetch(url)
         .then(res => res.json())
         .then(async (data) => {
@@ -37,7 +37,14 @@ async function getNewPosts() {
             let topics = data.topic_list.topics;
 
             if (lastPostIds[url] == null) {
-                lastPostIds[url] = topics[1].id;
+                let lastUnpinnedPostId = 0
+                for (const postNumber in topics) {
+                    if (!topics[postNumber].pinned) {
+                        lastUnpinnedPostId = topics[postNumber].id;
+                        break;
+                    }
+                }
+                lastPostIds[url] = lastUnpinnedPostId
             } else {
                 let newestId = 0
                 for (const topicIndex in topics) {
@@ -99,7 +106,7 @@ async function getNewPosts() {
             }
         });
     };
-    setTimeout(getNewPosts, 100000);
+    setTimeout(getNewPosts, 60000);
 }
 
 getNewPosts();
