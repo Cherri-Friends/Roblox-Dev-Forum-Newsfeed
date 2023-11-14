@@ -82,7 +82,8 @@ async function getNewPosts() {
                                         "title": topic.title,
                                         "url": topicUrl,
                                         "description": content,
-                                        "color": categoryColors[url]
+                                        "color": categoryColors[url],
+                                        "timestamp": topic.created_at
                                     }
                                 ]
                             }
@@ -106,7 +107,7 @@ async function getNewPosts() {
             }
         });
     };
-    setTimeout(getNewPosts, 60000);
+    setTimeout(getNewPosts, 10000);
 }
 
 getNewPosts();
