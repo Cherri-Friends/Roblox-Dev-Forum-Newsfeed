@@ -69,7 +69,7 @@ async function getNewPosts() {
                             }
 
                             let newMessage = {
-                                "username": "Developer Forum Newsfeed",
+                                "username": "",
                                 "avatar_url": "",
                                 "content": "",
                                 "embeds": [
