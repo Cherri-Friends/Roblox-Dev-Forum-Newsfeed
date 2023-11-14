@@ -107,7 +107,7 @@ async function getNewPosts() {
             }
         });
     };
-    setTimeout(getNewPosts, 10000);
+    setTimeout(getNewPosts, 60000);
 }
 
 getNewPosts();
