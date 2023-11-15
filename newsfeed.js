@@ -10,6 +10,13 @@ const trackedCategoryUrls  = [
     "https://devforum.roblox.com/c/updates/community/90.json",
 ]
 
+const categoryNames = {
+    "https://devforum.roblox.com/c/updates/release-notes/62.json": "[Release Notes]",
+    "https://devforum.roblox.com/c/updates/announcements/36.json": "[Announcements]",
+    "https://devforum.roblox.com/c/updates/news-alerts/193.json": "[News Alerts]",
+    "https://devforum.roblox.com/c/updates/community/90.json": "[Community]",
+}
+
 const categoryColors = {
     "https://devforum.roblox.com/c/updates/release-notes/62.json": 178007,
     "https://devforum.roblox.com/c/updates/announcements/36.json": 14820122,
@@ -83,7 +90,10 @@ async function getNewPosts() {
                                         "url": topicUrl,
                                         "description": content,
                                         "color": categoryColors[url],
-                                        "timestamp": topic.created_at
+                                        "timestamp": topic.created_at,
+                                        "footer": {
+                                            "text": categoryNames[url]
+                                        }
                                     }
                                 ]
                             }
